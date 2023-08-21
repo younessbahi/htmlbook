@@ -257,7 +257,7 @@ code_update <- function(html) {
   class <- xml_attr(pre, "class")
   pieces <- strsplit(class, " ")
   language <- vapply(pieces,
-    \(x) setdiff(x, c("sourceCode", "code-with-copy", "downlit"))[1],
+    (x) setdiff(x, c("sourceCode", "code-with-copy", "downlit"))[1],
     character(1)
   )
   xml_attr(pre, "data-code-language") <- language
