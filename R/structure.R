@@ -52,13 +52,13 @@ convert_book <- function(src_path = ".",
 
   # Copy images
   cli::cli_inform("Extracting external resources")
-  resources <- files |> map(rmarkdown::find_external_resources)
-  paths <- resources |> map("path") |> purrr::list_c() |> unique()
+  resources <- files %>% map(rmarkdown::find_external_resources)
+  paths <- resources %>% map("path") %>% purrr::list_c() %>% unique()
   images <- paths[tools::file_ext(paths) %in% c("png", "jpg")]
 
-  dirs <- images |> dirname() |> unique()
+  dirs <- images %>% dirname() %>% unique()
   dirs <- file.path("oreilly", dirs)
-  dirs |> walk(dir.create, recursive = TRUE, showWarnings = FALSE)
+  dirs %>% walk(dir.create, recursive = TRUE, showWarnings = FALSE)
   file.copy(images, file.path("oreilly", images))
 
   # Copy plots
